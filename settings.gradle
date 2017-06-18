@@ -1,0 +1,2 @@
+//自动屏幕适配
+include ':auto-layout'
