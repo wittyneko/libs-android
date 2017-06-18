@@ -1,0 +1,150 @@
+apply from: "config.gradle"
+
+ext {
+
+    dependencies = [
+            ////// ====== System ====== ///////
+            "support-v4"                     : "com.android.support:support-v4:$android.supportVersion",
+            "appcompat-v7"                   : "com.android.support:appcompat-v7:$android.supportVersion",
+            "design"                         : "com.android.support:design:$android.supportVersion",
+            "recyclerview-v7"                : "com.android.support:recyclerview-v7:$android.supportVersion",
+
+            // Anko
+            "anko"                           : "org.jetbrains.anko:anko:$android.anko_version",
+            // Anko Commons
+            "anko-commons"                   : "org.jetbrains.anko:anko-commons:$android.anko_version",
+
+            // Anko Layouts
+            "anko-sdk25"                     : "org.jetbrains.anko:anko-sdk25:$android.anko_version", // sdk15, sdk19, sdk21, sdk23 are also available
+            "anko-appcompat-v7"              : "org.jetbrains.anko:anko-appcompat-v7:$android.anko_version",
+
+            // Coroutine listeners for Anko Layouts
+            "anko-sdk25-coroutines"          : "org.jetbrains.anko:anko-sdk25-coroutines:$android.anko_version",
+            "anko-appcompat-v7-couroutines"  : "org.jetbrains.anko:anko-appcompat-v7-couroutines:$android.anko_version",
+
+            // Anko SQLite
+            "anko-sqlite"                    : "org.jetbrains.anko:anko-sqlite:$android.anko_version",
+
+            //// Anko Android support libraries ////
+
+            // Appcompat-v7 (only Anko Commons)
+            "anko-appcompat-v7-commons"      : "org.jetbrains.anko:anko-appcompat-v7-commons:$android.anko_version",
+
+            // Appcompat-v7 (Anko Layouts)
+            "anko-appcompat-v7"              : "org.jetbrains.anko:anko-appcompat-v7:$android.anko_version",
+            "anko-coroutines"                : "org.jetbrains.anko:anko-coroutines:$android.anko_version",
+
+            // CardView-v7
+            "anko-cardview-v7"               : "org.jetbrains.anko:anko-cardview-v7:$android.anko_version",
+
+            // Design
+            "anko-design"                    : "org.jetbrains.anko:anko-design:$android.anko_version",
+            "anko-design-coroutines"         : "org.jetbrains.anko:anko-design-coroutines:$android.anko_version",
+
+            // GridLayout-v7
+            "anko-gridlayout-v7"             : "org.jetbrains.anko:anko-gridlayout-v7:$android.anko_version",
+
+            // Percent
+            "anko-percent"                   : "org.jetbrains.anko:anko-percent:$android.anko_version",
+
+            // RecyclerView-v7
+            "anko-recyclerview-v7"           : "org.jetbrains.anko:anko-recyclerview-v7:$android.anko_version",
+            "anko-recyclerview-v7-coroutines": "org.jetbrains.anko:anko-recyclerview-v7-coroutines:$android.anko_version",
+
+            // Support-v4 (only Anko Commons)
+            "anko-support-v4-commons"        : "org.jetbrains.anko:anko-support-v4-commons:$android.anko_version",
+
+            // Support-v4 (Anko Layouts)
+            "anko-support-v4"                : "org.jetbrains.anko:anko-support-v4:$android.anko_version",
+
+            ////// ======= framework ====== //////
+
+            // RxJava 1.0
+            rxjava                           : "io.reactivex:rxjava:1.2.7",
+            rxandroid                        : "io.reactivex:rxandroid:1.2.1",
+
+            rxbinding_version                : "1.0.1",
+            rxbinding                        : "com.jakewharton.rxbinding:rxbinding:$dependencies[rxbinding_version]",
+            rxbinding_support_v4             : "com.jakewharton.rxbinding:rxbinding-support-v4:$dependencies[rxbinding_version]",
+            rxbinding_appcompat_v7           : "com.jakewharton.rxbinding:rxbinding-appcompat-v7:$dependencies[rxbinding_version]",
+            rxbinding_recyclerview_v7        : "com.jakewharton.rxbinding:rxbinding-recyclerview-v7:$dependencies[rxbinding_version]",
+            rxbinding_leanback_v17           : "com.jakewharton.rxbinding:rxbinding-leanback-v17:$dependencies[rxbinding_version]",
+            rxbinding_design                 : "com.jakewharton.rxbinding:rxbinding-design:$dependencies[rxbinding_version]",
+
+            rxlifecycle_version              : "0.6.1",
+            rxlifecycle                      : "com.trello:rxlifecycle:$dependencies[rxlifecycle_version]",
+            rxlifecycle_components           : "com.trello:rxlifecycle-components:$dependencies[rxlifecycle_version]",
+            rxlifecycle_kotlin               : "com.trello:rxlifecycle-kotlin:$dependencies[rxlifecycle_version]",
+            rxlifecycle_navi                 : "com.trello:rxlifecycle-navi:$dependencies[rxlifecycle_version]",
+
+            // RxJava 2.0
+            // https://github.com/ReactiveX/RxJava
+            rxjava2                          : "io.reactivex.rxjava2:rxjava:2.0.1",
+            // https://github.com/ReactiveX/RxAndroid
+            rxandroid2                       : "io.reactivex:rxandroid:2.0.1",
+            // https://github.com/JakeWharton/RxBinding
+            rxbinding2_version               : "2.0.0",
+            rxbinding2                       : "com.jakewharton.rxbinding2:rxbinding:$dependencies[rxbinding2_version]",
+            rxbinding2_support_v4            : "com.jakewharton.rxbinding2:rxbinding-support-v4:$dependencies[rxbinding2_version]",
+            rxbinding2_appcompat_v7          : "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:$dependencies[rxbinding2_version]",
+            rxbinding2_recyclerview_v7       : "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7:$dependencies[rxbinding2_version]",
+            rxbinding2_leanback_v17          : "com.jakewharton.rxbinding2:rxbinding-leanback-v17:$dependencies[rxbinding2_version]",
+            rxbinding2_design                : "com.jakewharton.rxbinding2:rxbinding-design:$dependencies[rxbinding2_version]",
+            // https://github.com/trello/RxLifecycle
+            rxlifecycle2_version             : "2.0.1",
+            rxlifecycle2                     : "com.trello.rxlifecycle2:rxlifecycle:$dependencies[rxlifecycle2_version]",
+            rxlifecycle2_android             : "com.trello.rxlifecycle2:rxlifecycle-android:$dependencies[rxlifecycle2_version]",
+            rxlifecycle2_components          : "com.trello.rxlifecycle2:rxlifecycle-components:$dependencies[rxlifecycle2_version]",
+            rxlifecycle2_kotlin              : "com.trello.rxlifecycle2:rxlifecycle-kotlin:$dependencies[rxlifecycle2_version]",
+            rxlifecycle2_navi                : "com.trello.rxlifecycle2:rxlifecycle-navi:$dependencies[rxlifecycle2_version]",
+
+            //retrofit网络
+            "retrofit"                       : 'com.squareup.retrofit2:retrofit:2.1.0',
+            "retrofit-converter-gson"        : 'com.squareup.retrofit2:converter-gson:2.0.2',
+            "retrofit-adapter-rxjava"        : 'com.squareup.retrofit2:adapter-rxjava:2.0.2',
+
+            //图片加载
+            "glide"                          : 'com.github.bumptech.glide:glide:3.7.0',
+            "picasso"                        : 'com.squareup.picasso:picasso:2.5.2',
+            "fresco"                         : 'com.facebook.fresco:fresco:0.12.0',
+
+            //Gson解析
+            "gson"                           : 'com.google.code.gson:gson:2.2.4',
+            //动画兼容
+            "nineoldandroids"                : 'com.nineoldandroids:library:2.4.0',
+
+            ////// ====== library ====== //////
+
+            // GIF 图片显示
+            // https://github.com/koral--/android-gif-drawable
+            "android-gif-drawable"           : 'pl.droidsonroids.gif:android-gif-drawable:1.2.6',
+            // https://github.com/CymChad/BaseRecyclerViewAdapterHelper
+            "cymRecyclerViewAdapter"         : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.13',
+            //图片选择
+            //https://github.com/donglua/PhotoPicker
+            "PhotoPicker"                    : 'me.iwf.photopicker:PhotoPicker:0.9.5@aar',
+            //图片剪切
+            //https://github.com/Yalantis/uCrop
+            "ucrop"                          : 'com.yalantis:ucrop:2.2.0',
+            // 选择器
+            // https://github.com/AigeStudio/WheelPicker
+            "WheelPicker"                    : 'cn.aigestudio.wheelpicker:WheelPicker:1.1.2',
+            // 工具类
+            //https://github.com/Blankj/AndroidUtilCode(http://www.jianshu.com/p/72494773aace)
+            "Blankj-utilcode"                : 'com.blankj:utilcode:1.4.1',
+
+            ////// ====== 第三方SDK ====== ////////
+            // 并发性注解
+            "jcip-annotations"               : 'net.jcip:jcip-annotations:1.0',
+            //蒲公英
+            // maven { url "https://raw.githubusercontent.com/Pgyer/mvn_repo_pgyer/master" }
+            "pgyersdk"                       : 'com.pgyersdk:sdk:2.5.6',
+            //友盟+
+            "umeng-analytics"                : 'com.umeng.analytics:analytics:latest.integration',
+            // GrowingIO 统计
+            "growingio"                      : 'com.growingio.android:vds-android-agent:0.9.104@aar',
+            // https://github.com/aliyun/aliyun-oss-android-sdk
+            "aliyun-oss"                     : 'com.aliyun.dpa:oss-android-sdk:2.3.0',
+    ]
+
+}
