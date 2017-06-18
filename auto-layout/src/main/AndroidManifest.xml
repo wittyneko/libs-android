@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="cn.wittyneko.autolayout.AutoFrameLayout">
+    package="cn.wittyneko.autolayout">
 
     <application
         android:allowBackup="true"
