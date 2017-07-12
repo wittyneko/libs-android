@@ -43,6 +43,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    productFlavors {
+
+
+        File f;
+        Set<String> javaDirs = sourceSets.main.java.srcDirs
+        //创建源文件文件夹
+        for (int i = 0; i < javaDirs.size(); i++) {
+            f = file("${javaDirs.getAt(i)}")
+            f.mkdirs()
+        }
+    }
 }
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
@@ -53,6 +65,8 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     testCompile 'junit:junit:4.12'
 }
+
+////////////// maven仓库推送 //////////////
 
 apply plugin: 'maven'
 
@@ -103,13 +117,17 @@ uploadArchives {
             String password = 'admin123'
             //先读取gradle.properties，不存在则读取local.properties
             Properties properties = rootProject.ext.android.properties
-            user = rootProject.hasProperty('localUserName') ? rootProject.localUserName : (properties != null ? properties.getProperty('localUserName', user) : user)
-            password = rootProject.hasProperty('localPassword') ? rootProject.localPassword : (properties != null ? properties.getProperty('localPassword', password) : password)
-            println("user: $user, passowrd: $password")
+            user = rootProject.hasProperty('localUserName') ? rootProject.localUserName
+                    : (properties != null ? properties.getProperty('localUserName', user) : user)
+            password = rootProject.hasProperty('localPassword') ? rootProject.localPassword
+                    : (properties != null ? properties.getProperty('localPassword', password) : password)
+            println "user: $user, passowrd: $password"
             repository(url: rootProject.ext.maven.localMaven){
+                println "uploadArchives $url"
                 authentication(userName: user, password: password)
             }
             snapshotRepository(url: rootProject.ext.maven.localMavenSnapshots){
+                println "uploadArchives $url"
                 authentication(userName: user, password: password)
             }
         }
