@@ -1,3 +1,1 @@
 include ':base'
-//自动屏幕适配
-include ':auto-layout'
