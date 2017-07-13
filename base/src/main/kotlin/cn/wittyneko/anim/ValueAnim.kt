@@ -144,7 +144,7 @@ open class ValueAnim : ValueAnimator(), AnimListener {
 val ValueAnimator.isReversing: Boolean
     get() {
         try {
-            var rfield = this.javaClass.getDeclaredField("mReversing")
+            var rfield = ValueAnimator::class.java.getDeclaredField("mReversing")
             rfield.isAccessible = true
             return rfield.get(this) as? Boolean ?: false
         } catch (e: Throwable) {
@@ -156,7 +156,7 @@ val ValueAnimator.isReversing: Boolean
 val ValueAnimator.isPlayingBackwards: Boolean
     get() {
         try {
-            var rfield = this.javaClass.getDeclaredField("mPlayingBackwards")
+            var rfield = ValueAnimator::class.java.getDeclaredField("mPlayingBackwards")
             rfield.isAccessible = true
             return rfield.get(this) as? Boolean ?: false
         } catch (e: Throwable) {
