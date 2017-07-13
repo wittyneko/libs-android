@@ -9,7 +9,13 @@ ext {
             "design"                         : "com.android.support:design:$android.supportVersion",
             "recyclerview-v7"                : "com.android.support:recyclerview-v7:$android.supportVersion",
 
-            // Anko
+            "kotlin-stdlib"                  : "org.jetbrains.kotlin:kotlin-stdlib:$android.kotlin_stdlib",
+            "kotlin-stdlib-jre7"             : "org.jetbrains.kotlin:kotlin-stdlib-jar7:$android.kotlin_stdlib",
+            // Anko 元引用包含多个引用: kotlin-stdlib
+            // anko-commons,anko-coroutines,anko-sqlite,
+            // anko-sdk25,anko-sdk25-coroutines,
+            // anko-appcompat-v7, anko-appcompat-v7-coroutines
+            //
             "anko"                           : "org.jetbrains.anko:anko:$android.anko_version",
             // Anko Commons
             "anko-commons"                   : "org.jetbrains.anko:anko-commons:$android.anko_version",
@@ -29,31 +35,23 @@ ext {
 
             // Appcompat-v7 (only Anko Commons)
             "anko-appcompat-v7-commons"      : "org.jetbrains.anko:anko-appcompat-v7-commons:$android.anko_version",
-
             // Appcompat-v7 (Anko Layouts)
             "anko-appcompat-v7"              : "org.jetbrains.anko:anko-appcompat-v7:$android.anko_version",
             "anko-coroutines"                : "org.jetbrains.anko:anko-coroutines:$android.anko_version",
-
             // CardView-v7
             "anko-cardview-v7"               : "org.jetbrains.anko:anko-cardview-v7:$android.anko_version",
-
             // Design
             "anko-design"                    : "org.jetbrains.anko:anko-design:$android.anko_version",
             "anko-design-coroutines"         : "org.jetbrains.anko:anko-design-coroutines:$android.anko_version",
-
             // GridLayout-v7
             "anko-gridlayout-v7"             : "org.jetbrains.anko:anko-gridlayout-v7:$android.anko_version",
-
             // Percent
             "anko-percent"                   : "org.jetbrains.anko:anko-percent:$android.anko_version",
-
             // RecyclerView-v7
             "anko-recyclerview-v7"           : "org.jetbrains.anko:anko-recyclerview-v7:$android.anko_version",
             "anko-recyclerview-v7-coroutines": "org.jetbrains.anko:anko-recyclerview-v7-coroutines:$android.anko_version",
-
             // Support-v4 (only Anko Commons)
             "anko-support-v4-commons"        : "org.jetbrains.anko:anko-support-v4-commons:$android.anko_version",
-
             // Support-v4 (Anko Layouts)
             "anko-support-v4"                : "org.jetbrains.anko:anko-support-v4:$android.anko_version",
 
