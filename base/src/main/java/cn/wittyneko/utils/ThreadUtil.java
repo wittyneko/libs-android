@@ -38,7 +38,7 @@ public class ThreadUtil {
      * @param runnable
      * @param delayMillis
      */
-    public static void runOnUiThread(Runnable runnable, long delayMillis) {
+    public static void runOnUiThread(long delayMillis, Runnable runnable) {
         mHandle.postDelayed(runnable, delayMillis);
     }
 
@@ -49,7 +49,7 @@ public class ThreadUtil {
      */
     public static void runOnBackgroundThread(Runnable runnable) {
         if (isMainThread()) {
-            runOnBackgroundThread(runnable, 0);
+            runOnBackgroundThread(0, runnable);
         } else {
             runnable.run();
         }
@@ -61,7 +61,7 @@ public class ThreadUtil {
      * @param runnable
      * @param delayMillis
      */
-    public static void runOnBackgroundThread(final Runnable runnable, final long delayMillis) {
+    public static void runOnBackgroundThread(final long delayMillis, final Runnable runnable) {
         ThreadPool.cachedThread().execute(new Runnable() {
             @Override
             public void run() {
