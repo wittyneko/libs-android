@@ -11,32 +11,32 @@ open class AnimSet : ValueAnim() {
 
     companion object {
 
-        fun ofInt(vararg values: Int): ValueAnim {
+        fun ofInt(vararg values: Int): AnimSet {
             val anim = AnimSet()
             anim.setIntValues(*values)
             return anim
         }
 
-        fun ofArgb(values: IntArray): ValueAnim {
+        fun ofArgb(values: IntArray): AnimSet {
             val anim = AnimSet()
             anim.setIntValues(*values)
             anim.setEvaluator(argbEvaluator)
             return anim
         }
 
-        fun ofFloat(vararg values: Float): ValueAnim {
+        fun ofFloat(vararg values: Float): AnimSet {
             val anim = AnimSet()
             anim.setFloatValues(*values)
             return anim
         }
 
-        fun ofPropertyValuesHolder(vararg values: PropertyValuesHolder): ValueAnim {
+        fun ofPropertyValuesHolder(vararg values: PropertyValuesHolder): AnimSet {
             val anim = AnimSet()
             anim.setValues(*values)
             return anim
         }
 
-        fun ofObject(evaluator: TypeEvaluator<*>, vararg values: Any): ValueAnimator {
+        fun ofObject(evaluator: TypeEvaluator<*>, vararg values: Any): AnimSet {
             val anim = AnimSet()
             anim.setObjectValues(*values)
             anim.setEvaluator(evaluator)
@@ -48,6 +48,8 @@ open class AnimSet : ValueAnim() {
     var childAnimSet: HashSet<AnimWrapper> = hashSetOf()
 
     init {
+        if (values == null)
+            setFloatValues(0f, 100f)
         interpolator = LinearInterpolator()
     }
 
@@ -61,7 +63,7 @@ open class AnimSet : ValueAnim() {
     fun animChildPlayTime(delayed: Long, duration: Long): Long {
         var childPlayTime = animCurrentPlayTime - delayed
         when {
-            childPlayTime < delayed -> {
+            childPlayTime < 0 -> {
                 childPlayTime = 0
             }
             childPlayTime > duration -> {
@@ -84,26 +86,70 @@ open class AnimSet : ValueAnim() {
     /**
      * 添加子动画
      * @param child 子动画包装类
+     *
+     * @throws e duration grate than parent
      */
     fun addChildAnim(child: AnimWrapper) {
+        if (child.delayed + child.anim.duration > this.duration)
+            throw Exception("duration greater than parent")
         childAnimSet.add(child)
     }
 
     override fun onAnimationUpdate(animation: ValueAnimator?) {
         super.onAnimationUpdate(animation)
 
-        //遍历刷新子动画
         childAnimSet.forEach {
-            it.anim.currentPlayTime = animChildPlayTime(it.delayed, it.anim.duration)
+            //刷新子动画
+            val anim = it.anim
+            anim.currentPlayTime = animChildPlayTime(it.delayed, anim.duration)
+        }
+    }
+
+    override fun onAnimationStart(animation: Animator?) {
+        super.onAnimationStart(animation)
+
+        childAnimSet.forEach {
+            val anim = it.anim
+            anim.listeners?.forEach {
+                it.onAnimationStart(anim)
+            }
         }
     }
 
     override fun onAnimationEnd(animation: Animator?) {
         super.onAnimationEnd(animation)
 
-        //遍历结束子动画
         childAnimSet.forEach {
-            it.anim.currentPlayTime = animChildPlayTime(it.delayed, it.anim.duration)
+            val anim = it.anim
+            if (isAnimReverse)
+                anim.currentPlayTime = 0
+            else
+                anim.currentPlayTime = anim.duration
+            anim.listeners?.forEach {
+                it.onAnimationEnd(anim)
+            }
+        }
+    }
+
+    override fun onAnimationCancel(animation: Animator?) {
+        super.onAnimationCancel(animation)
+
+        childAnimSet.forEach {
+            val anim = it.anim
+            anim.listeners?.forEach {
+                it.onAnimationCancel(anim)
+            }
+        }
+    }
+
+    override fun onAnimationRepeat(animation: Animator?) {
+        super.onAnimationRepeat(animation)
+
+        childAnimSet.forEach {
+            val anim = it.anim
+            anim.listeners?.forEach {
+                it.onAnimationRepeat(anim)
+            }
         }
     }
 
