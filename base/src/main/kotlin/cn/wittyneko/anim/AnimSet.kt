@@ -49,7 +49,7 @@ open class AnimSet : ValueAnim() {
 
     init {
         if (values == null)
-            setFloatValues(0f, 100f)
+            setFloatValues(0f, 1f)
         interpolator = LinearInterpolator()
     }
 
@@ -79,7 +79,7 @@ open class AnimSet : ValueAnim() {
      * @param delayed 子动画延迟时间
      * @param tag 子动画tag标签
      */
-    fun addChildAnim(childAnim: ValueAnimator, delayed: Long, tag: String = AnimWrapper.EMPTY_TAG) {
+    fun addChildAnim(childAnim: ValueAnimator, delayed: Long = 0, tag: String = AnimWrapper.EMPTY_TAG) {
         addChildAnim(AnimWrapper(childAnim, delayed, tag))
     }
 
@@ -121,10 +121,12 @@ open class AnimSet : ValueAnim() {
 
         childAnimSet.forEach {
             val anim = it.anim
-            if (isAnimReverse)
-                anim.currentPlayTime = 0
-            else
-                anim.currentPlayTime = anim.duration
+            if (isAnimEnd) {
+                if (isAnimReverse)
+                    anim.currentPlayTime = 0
+                else
+                    anim.currentPlayTime = anim.duration
+            }
             anim.listeners?.forEach {
                 it.onAnimationEnd(anim)
             }
@@ -158,7 +160,7 @@ open class AnimSet : ValueAnim() {
      */
     class AnimWrapper(
             var anim: ValueAnimator,
-            var delayed: Long,
+            var delayed: Long = 0,
             var tag: String = AnimWrapper.EMPTY_TAG) {
         companion object {
             val EMPTY_TAG = ""

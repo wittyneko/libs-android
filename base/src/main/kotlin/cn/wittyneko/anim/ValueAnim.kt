@@ -51,6 +51,12 @@ open class ValueAnim : ValueAnimator(), AnimListener {
 
     var listener: AnimListener? = null
 
+    var isAnimEnd: Boolean = false
+        protected set
+
+    var isAnimCancel: Boolean = false
+        protected set
+
     //是否反向
     val isAnimReverse: Boolean
         get() {
@@ -114,6 +120,30 @@ open class ValueAnim : ValueAnimator(), AnimListener {
         } else {
             animReverse()
         }
+    }
+
+    override fun start() {
+        isAnimCancel = false
+        isAnimEnd = false
+        super.start()
+    }
+
+    override fun reverse() {
+        isAnimCancel = false
+        isAnimEnd = false
+        super.reverse()
+    }
+
+    override fun end() {
+        isAnimCancel = false
+        isAnimEnd = true
+        super.end()
+    }
+
+    override fun cancel() {
+        isAnimCancel = true
+        isAnimEnd = false
+        super.cancel()
     }
 
     override fun onAnimationUpdate(animation: ValueAnimator?) {
