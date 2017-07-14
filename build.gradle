@@ -4,6 +4,7 @@ buildscript {
     apply from : "dependencies.gradle"
     ext.kotlin_version = '1.1.2-4'
     repositories {
+        maven { url rootProject.ext.maven.localMaven}
         maven { url rootProject.ext.maven.aliyunMaven}
         jcenter()
     }
@@ -22,8 +23,9 @@ allprojects {
         maven { url rootProject.ext.maven.sdkAndroidMaven }
         maven { url rootProject.ext.maven.sdkGoogleMaven }
         maven { url rootProject.ext.maven.sdkMaven }
+        maven { url rootProject.ext.maven.myMaven}
+        maven { url rootProject.ext.maven.myMavenSnapshots}
         maven { url rootProject.ext.maven.localMaven}
-        maven { url rootProject.ext.maven.localMavenSnapshots}
         maven { url rootProject.ext.maven.aliyunMaven}
         jcenter()
         //println("maven: ${mavenLocal().url}")

@@ -46,6 +46,7 @@ ext {
     userHome = _UserHome
     localProperties = _LocalProperties
     sdkPath = _SdkPath
+    localMavenHost = "http://192.168.1.100:8081"
 
     android = [
             compileSdkVersion: 25,
@@ -62,11 +63,14 @@ ext {
     ]
 
     maven = [
-            localMaven         : "file:${userHome}/.mymaven/repository",
-            localMavenSnapshots: "file:${userHome}/.mymaven/snapshotRepository",
+            myMaven            : "file:${userHome}/.mymaven/repository",
+            myMavenSnapshots   : "file:${userHome}/.mymaven/snapshotRepository",
+            localGroup         : "$localMavenHost/nexus/content/groups/public",
+            localMaven         : "$localMavenHost/nexus/content/repositories/releases",
+            localMavenSnapshots: "$localMavenHost/nexus/content/repositories/snapshots",
             sdkMaven           : "file:${android.sdkPath}/extras/m2repository",
             sdkAndroidMaven    : "file:${android.sdkPath}/extras/android/m2repository",
-            sdkGoogleMaven     : "file:${android.sdkPath}/extras/m2repository",
+            sdkGoogleMaven     : "file:${android.sdkPath}/extras/google/m2repository",
             aliyunMaven        : "http://maven.aliyun.com/nexus/content/groups/public",
     ]
 
