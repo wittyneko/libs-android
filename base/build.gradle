@@ -122,11 +122,20 @@ uploadArchives {
             password = rootProject.hasProperty('localPassword') ? rootProject.localPassword
                     : (properties != null ? properties.getProperty('localPassword', password) : password)
             println "user: $user, passowrd: $password"
-            repository(url: rootProject.ext.maven.localMaven){
+
+            String release, snapshot
+            if (false) {
+                release = rootProject.ext.maven.localMaven
+                snapshot = rootProject.ext.maven.localMavenSnapshots
+            } else {
+                release = rootProject.ext.maven.myMaven
+                snapshot = rootProject.ext.maven.myMavenSnapshots
+            }
+            repository(url: release){
                 println "uploadArchives $url"
                 authentication(userName: user, password: password)
             }
-            snapshotRepository(url: rootProject.ext.maven.localMavenSnapshots){
+            snapshotRepository(url: snapshot){
                 println "uploadArchives $url"
                 authentication(userName: user, password: password)
             }
