@@ -102,6 +102,10 @@ open class AnimSet : ValueAnim() {
             //刷新子动画
             val anim = it.anim
             anim.currentPlayTime = animChildPlayTime(it.delayed, anim.duration)
+
+            if(anim is ValueAnim) {
+                anim.isAnimReverse = isAnimReverse
+            }
         }
     }
 

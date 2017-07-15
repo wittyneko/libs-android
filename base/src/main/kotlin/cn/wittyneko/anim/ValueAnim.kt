@@ -58,7 +58,7 @@ open class ValueAnim : ValueAnimator(), AnimListener {
         protected set
 
     //是否反向
-    val isAnimReverse: Boolean
+    var isAnimReverse: Boolean
         get() {
             if (isRunning) {
                 return isReversing
@@ -66,11 +66,14 @@ open class ValueAnim : ValueAnimator(), AnimListener {
                 return _isAnimReverse
             }
         }
+        internal set(value) {
+            _isAnimReverse = value
+        }
 
     //动画播放时间
     val animCurrentPlayTime: Long
         get() {
-            if (isAnimReverse) {
+            if (isRunning && isAnimReverse) {
                 return duration - currentPlayTime
             } else {
                 return currentPlayTime
@@ -155,7 +158,7 @@ open class ValueAnim : ValueAnimator(), AnimListener {
     }
 
     override fun onAnimationEnd(animation: Animator?) {
-        if (animation is ValueAnimator) {
+        if ((isStarted || isRunning) && animation is ValueAnimator) {
             _isAnimReverse = animation.isReversing
         }
         listener?.onAnimationEnd(animation)
