@@ -37,7 +37,7 @@ open class ValueAnim : ValueAnimator(), AnimListener {
             return anim
         }
 
-        fun ofObject(evaluator: TypeEvaluator<*>, vararg values: Any): ValueAnimator {
+        fun ofObject(evaluator: TypeEvaluator<*>, vararg values: Any): ValueAnim {
             val anim = ValueAnim()
             anim.setObjectValues(*values)
             anim.setEvaluator(evaluator)

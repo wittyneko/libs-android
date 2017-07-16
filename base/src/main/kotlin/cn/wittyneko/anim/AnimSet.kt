@@ -79,8 +79,9 @@ open class AnimSet : ValueAnim() {
      * @param delayed 子动画延迟时间
      * @param tag 子动画tag标签
      */
-    fun addChildAnim(childAnim: ValueAnimator, delayed: Long = 0, tag: String = AnimWrapper.EMPTY_TAG) {
+    fun addChildAnim(childAnim: ValueAnimator, delayed: Long = 0, tag: String = AnimWrapper.EMPTY_TAG): AnimSet {
         addChildAnim(AnimWrapper(childAnim, delayed, tag))
+        return this
     }
 
     /**
@@ -89,10 +90,11 @@ open class AnimSet : ValueAnim() {
      *
      * @throws e duration grate than parent
      */
-    fun addChildAnim(child: AnimWrapper) {
+    fun addChildAnim(child: AnimWrapper): AnimSet {
         if (child.delayed + child.anim.duration > this.duration)
             throw Exception("duration greater than parent")
         childAnimSet.add(child)
+        return this
     }
 
     override fun onAnimationUpdate(animation: ValueAnimator?) {
