@@ -124,7 +124,7 @@ uploadArchives {
             println "user: $user, passowrd: $password"
 
             String release, snapshot
-            if (false) {
+            if (rootProject.ext.isLocalMaven) {
                 release = rootProject.ext.maven.localMaven
                 snapshot = rootProject.ext.maven.localMavenSnapshots
             } else {

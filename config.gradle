@@ -46,7 +46,8 @@ ext {
     userHome = _UserHome
     localProperties = _LocalProperties
     sdkPath = _SdkPath
-    localMavenHost = "http://192.168.1.100:8081"
+    isLocalMaven = true
+    localMavenHost = "http://192.168.1.187:8081"
 
     android = [
             compileSdkVersion: 25,
