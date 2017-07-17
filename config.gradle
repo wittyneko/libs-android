@@ -50,6 +50,10 @@ ext {
     localMavenHost = "http://192.168.1.187:8081"
 
     android = [
+            pluginVersion    : "2.3.3",
+            properties       : localProperties,
+            sdkPath          : sdkPath,
+            //////////////////////////////////
             compileSdkVersion: 25,
             buildToolsVersion: "25.0.3",
             minSdkVersion    : 20,
@@ -59,8 +63,6 @@ ext {
             supportVersion   : "25.3.1",
             kotlin_stdlib    : "1.1.0",
             anko_version     : "0.10.1",
-            properties       : localProperties,
-            sdkPath          : sdkPath,
     ]
 
     maven = [
@@ -73,6 +75,7 @@ ext {
             sdkAndroidMaven    : "file:${android.sdkPath}/extras/android/m2repository",
             sdkGoogleMaven     : "file:${android.sdkPath}/extras/google/m2repository",
             aliyunMaven        : "http://maven.aliyun.com/nexus/content/groups/public",
+            jitpack            : "https://jitpack.io",
     ]
 
 }

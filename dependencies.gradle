@@ -15,7 +15,6 @@ ext {
             // anko-commons,anko-coroutines,anko-sqlite,
             // anko-sdk25,anko-sdk25-coroutines,
             // anko-appcompat-v7, anko-appcompat-v7-coroutines
-            //
             "anko"                           : "org.jetbrains.anko:anko:$android.anko_version",
             // Anko Commons
             "anko-commons"                   : "org.jetbrains.anko:anko-commons:$android.anko_version",
