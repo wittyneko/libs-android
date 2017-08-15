@@ -1,5 +1,7 @@
 package cn.wittyneko.extensions
 
+import kotlin.reflect.KProperty
+
 /**
  * Created by wittyneko on 17-6-26.
  */
@@ -19,4 +21,9 @@ operator fun <T> Boolean.rem(yes: () -> T) = SelectFun(this, yes)
 
 class SelectFun<T>(val isTrue: Boolean, val yes: () -> T) {
     operator fun div(no: () -> T) = if (isTrue) yes else no
+}
+
+operator fun <T: Any, R> T.getValue(thisRef: Any?, property: KProperty<*>) = with(javaClass.getField(property.name)) {
+    isAccessible = true
+    get(this@getValue) as R
 }
