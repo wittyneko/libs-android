@@ -11,6 +11,10 @@ open class AnimSet : ValueAnim() {
 
     companion object {
 
+        fun ofDef(): AnimSet {
+            return ofFloat(0f, 1f)
+        }
+
         fun ofInt(vararg values: Int): AnimSet {
             val anim = AnimSet()
             anim.setIntValues(*values)
@@ -48,8 +52,6 @@ open class AnimSet : ValueAnim() {
     var childAnimSet: HashSet<AnimWrapper> = hashSetOf()
 
     init {
-        if (values == null)
-            setFloatValues(0f, 1f)
         interpolator = LinearInterpolator()
     }
 
